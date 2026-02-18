@@ -3,18 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Mia Watchlist</title>
+    <title>My GameList</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background-color: #0f172a; }
+        body { background-color: #111827; } /* Sfondo leggermente più scuro (Gray-900) */
         
-        /* Custom Scrollbar Styling - Ora visibile e funzionante */
         ::-webkit-scrollbar { width: 8px; height: 8px; }
-        ::-webkit-scrollbar-track { background: #0f172a; }
-        ::-webkit-scrollbar-thumb { background: #38bdf8; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #0ea5e9; }
+        ::-webkit-scrollbar-track { background: #111827; }
+        ::-webkit-scrollbar-thumb { background: #10b981; border-radius: 4px; } /* Verde Smeraldo per i giochi */
+        ::-webkit-scrollbar-thumb:hover { background: #34d399; }
 
-        /* Accordion Animation */
         .accordion-content { transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out; max-height: 0; opacity: 0; overflow: hidden; }
         .accordion-content.open { max-height: 2000px; opacity: 1; }
         
@@ -22,57 +20,60 @@
         .group[data-open="true"] .chevron { transform: rotate(180deg); }
     </style>
 </head>
-<body class="text-slate-200 font-sans antialiased selection:bg-sky-500 selection:text-white pb-20">
+<body class="text-gray-200 font-sans antialiased selection:bg-emerald-500 selection:text-white pb-20">
 
-    <div id="cache-warning" class="bg-yellow-600/20 border-b border-yellow-600/50 text-yellow-200 px-4 py-2 text-center text-sm font-mono cursor-pointer hover:bg-yellow-600/30 transition">
-        ⚠️ Non vedi le modifiche? Premi <strong>CTRL + SHIFT + R</strong> per aggiornare. <span onclick="this.parentElement.remove()" class="underline ml-2 text-yellow-400">Chiudi</span>
+    <div id="cache-warning" class="bg-emerald-900/30 border-b border-emerald-600/50 text-emerald-200 px-4 py-2 text-center text-sm font-mono cursor-pointer hover:bg-emerald-900/50 transition">
+        ⚠️ Non vedi le modifiche? Premi <strong>CTRL + SHIFT + R</strong> per aggiornare. <span onclick="this.parentElement.remove()" class="underline ml-2 text-emerald-400">Chiudi</span>
     </div>
 
-    <nav class="sticky top-0 z-40 bg-slate-900/95 backdrop-blur-md border-b border-slate-700 p-4 shadow-xl">
+    <nav class="sticky top-0 z-40 bg-gray-900/95 backdrop-blur-md border-b border-gray-800 p-4 shadow-xl">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <h1 class="text-2xl font-bold bg-gradient-to-r from-sky-400 to-indigo-400 bg-clip-text text-transparent">
-                MyWatchlist <span class="text-slate-500 text-sm font-mono ml-2">v3.1</span>
+            <h1 class="text-2xl font-bold bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+                MyGameList <span class="text-gray-500 text-sm font-mono ml-2">v1.0</span>
             </h1>
-            <div class="text-xs text-slate-400 font-mono hidden sm:block">Total items: <span id="total-count">0</span></div>
+            <div class="text-xs text-gray-400 font-mono hidden sm:block">Library: <span id="total-count">0</span> items</div>
         </div>
     </nav>
 
     <main id="main-container" class="max-w-6xl mx-auto p-4 space-y-4 mt-6">
-        </main>
+    </main>
 
-    <div id="movie-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/95 backdrop-blur-sm transition-opacity" onclick="if(event.target===this) closeModal()">
-        <div class="bg-slate-800 rounded-2xl max-w-5xl w-full overflow-hidden shadow-2xl border border-slate-700 relative flex flex-col md:flex-row max-h-[90vh]">
+    <div id="game-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/95 backdrop-blur-sm transition-opacity" onclick="if(event.target===this) closeModal()">
+        <div class="bg-gray-800 rounded-2xl max-w-5xl w-full overflow-hidden shadow-2xl border border-gray-700 relative flex flex-col md:flex-row max-h-[90vh]">
             <button onclick="closeModal()" class="absolute top-3 right-3 z-10 p-2 bg-black/60 rounded-full text-white hover:bg-red-500 transition">✕</button>
             
-            <div class="w-full md:w-2/3 bg-black aspect-video md:aspect-auto relative">
+            <div id="video-container" class="w-full md:w-2/3 bg-black aspect-video md:aspect-auto relative hidden md:block">
                 <iframe id="modal-trailer" class="absolute inset-0 w-full h-full" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <div id="no-video-placeholder" class="absolute inset-0 flex items-center justify-center text-gray-500 text-sm hidden">
+                    <span>Nessun trailer disponibile</span>
+                </div>
             </div>
 
-            <div class="w-full md:w-1/3 p-6 md:p-8 flex flex-col bg-slate-800 overflow-y-auto">
-                <span id="modal-category" class="text-xs font-bold text-sky-400 uppercase tracking-widest mb-2"></span>
+            <div id="info-container" class="w-full md:w-1/3 p-6 md:p-8 flex flex-col bg-gray-800 overflow-y-auto border-l border-gray-700">
+                <span id="modal-category" class="text-xs font-bold text-emerald-400 uppercase tracking-widest mb-2"></span>
                 <h2 id="modal-title" class="text-2xl md:text-3xl font-extrabold text-white leading-tight mb-2"></h2>
                 
-                <div class="flex items-center space-x-4 text-sm text-slate-400 mb-6 border-b border-slate-700 pb-4">
-                    <span class="flex items-center">⏱ <span id="modal-duration" class="ml-1 text-slate-200"></span></span>
+                <div class="flex items-center space-x-4 text-sm text-gray-400 mb-6 border-b border-gray-700 pb-4">
+                    <span class="flex items-center">🏷️ <span id="modal-info" class="ml-2 text-gray-200"></span></span>
                 </div>
                 
-                <p id="modal-plot" class="text-slate-300 leading-relaxed text-sm mb-6 flex-grow"></p>
+                <p id="modal-plot" class="text-gray-300 leading-relaxed text-sm mb-6 flex-grow"></p>
                 
                 <div class="mt-auto pt-4">
-                    <a id="modal-justwatch" href="#" target="_blank" class="flex items-center justify-center w-full gap-2 bg-[#fbc500] hover:bg-[#e0b000] text-black font-bold py-3 px-4 rounded-lg transition-transform hover:scale-[1.02] shadow-lg">
-                        <img src="https://www.justwatch.com/appassets/img/logo/JustWatch-logo-large.webp" alt="JW" class="h-4 w-auto object-contain brightness-0"> 
-                        <span>Trova streaming</span>
+                    <a id="modal-search" href="#" target="_blank" class="flex items-center justify-center w-full gap-2 bg-gray-100 hover:bg-white text-black font-bold py-3 px-4 rounded-lg transition-transform hover:scale-[1.02] shadow-lg">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12.545,10.239v3.821h5.445c-0.712,2.315-2.647,3.972-5.445,3.972c-3.332,0-6.033-2.701-6.033-6.032s2.701-6.032,6.033-6.032c1.498,0,2.866,0.549,3.921,1.453l2.814-2.814C17.503,2.988,15.139,2,12.545,2C7.021,2,2.543,6.477,2.543,12s4.478,10,10.002,10c8.396,0,10.249-7.85,9.426-11.748L12.545,10.239z"/></svg>
+                        <span>Cerca Info</span>
                     </a>
-                    <p class="text-[10px] text-center text-slate-500 mt-2">Verifica su Netflix, Prime, Disney+ etc.</p>
+                    <p class="text-[10px] text-center text-gray-500 mt-2">Recensioni, prezzi, guide.</p>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        const categoryOrder = ["Horror", "Film", "Cartoni", "Serie TV", "Serie TV animate", "MCU", "DCU"];
+        // Categorie aggiornate per Giochi e Libri
+        const categoryOrder = ["Videogiochi", "Giochi da Tavolo", "Libri", "Fumetti"];
 
-        // Funzione Smart per estrarre l'ID da qualsiasi link YouTube
         function getYouTubeId(url) {
             if (!url || url === 'placeholder') return null;
             if (url.length === 11) return url;
@@ -81,40 +82,41 @@
             return (match && match[2].length === 11) ? match[2] : null;
         }
 
-        async function loadMovies() {
+        async function loadGames() {
             try {
-                const response = await fetch('movies.json?v=' + new Date().getTime());
-                const movies = await response.json();
-                renderAccordion(movies);
-                document.getElementById('total-count').innerText = movies.length;
+                // Carica games.json invece di movies.json
+                const response = await fetch('games.json?v=' + new Date().getTime());
+                const games = await response.json();
+                renderAccordion(games);
+                document.getElementById('total-count').innerText = games.length;
             } catch (error) {
                 console.error("Errore:", error);
-                document.getElementById('main-container').innerHTML = "<div class='text-center text-red-400 p-10 border border-red-800 rounded bg-red-900/20'>Errore caricamento dati. Verifica il JSON.</div>";
+                document.getElementById('main-container').innerHTML = "<div class='text-center text-red-400 p-10 border border-red-800 rounded bg-red-900/20'>Errore caricamento dati. Verifica games.json.</div>";
             }
         }
 
-        function renderAccordion(movies) {
+        function renderAccordion(items) {
             const container = document.getElementById('main-container');
             container.innerHTML = '';
 
             categoryOrder.forEach((catName, index) => {
-                const catMovies = movies.filter(m => m.category === catName);
-                if (catMovies.length === 0) return;
+                const catItems = items.filter(m => m.category === catName);
+                if (catItems.length === 0) return;
 
                 const section = document.createElement('div');
-                section.className = "group border border-slate-700 rounded-xl bg-slate-800/50 overflow-hidden mb-6";
+                section.className = "group border border-gray-700 rounded-xl bg-gray-800/50 overflow-hidden mb-6";
                 section.dataset.open = index === 0 ? "true" : "false";
 
                 const header = document.createElement('div');
-                header.className = "p-4 flex items-center justify-between cursor-pointer hover:bg-slate-700/50 transition select-none z-10 relative bg-slate-800";
+                header.className = "p-4 flex items-center justify-between cursor-pointer hover:bg-gray-700/50 transition select-none z-10 relative bg-gray-800";
                 header.onclick = () => toggleSection(section);
                 header.innerHTML = `
                     <div class="flex items-center gap-3">
-                        <span class="w-2 h-2 rounded-full bg-sky-500 shadow-[0_0_10px_rgba(14,165,233,0.5)]"></span>
-                        <h2 class="text-lg font-bold text-slate-100">${catName}</h2>
-                        <span class="text-xs bg-slate-900 text-slate-400 px-2 py-0.5 rounded-full border border-slate-700">${catMovies.length}</span>
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]"></span>
+                        <h2 class="text-lg font-bold text-gray-100">${catName}</h2>
+                        <span class="text-xs bg-gray-900 text-gray-400 px-2 py-0.5 rounded-full border border-gray-700">${catItems.length}</span>
                     </div>
-                    <svg class="chevron w-5 h-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg class="chevron w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                     </svg>
                 `;
@@ -123,20 +125,31 @@
                 contentWrapper.className = `accordion-content ${index === 0 ? 'open' : ''}`;
                 
                 const scrollContainer = document.createElement('div');
-                // NOTA: Ho rimosso 'no-scrollbar' qui sotto come richiesto per far vedere la barra
                 scrollContainer.className = "flex overflow-x-auto gap-4 p-4 pb-6 snap-x";
                 
-                catMovies.forEach(movie => {
+                catItems.forEach(item => {
+                    // Logic per "In Arrivo"
+                    let imgClasses = "w-full h-full object-cover opacity-90 group-hover/card:opacity-100 transition-opacity";
+                    let badgeHTML = "";
+
+                    if (item.in_arrivo === true) {
+                        imgClasses = "w-full h-full object-cover grayscale opacity-40"; 
+                        badgeHTML = `<div class="absolute top-2 right-2 z-30 bg-yellow-500 text-black text-[9px] font-bold px-2 py-1 rounded shadow-md pointer-events-none tracking-tighter">IN ARRIVO</div>`;
+                    }
+
                     const card = document.createElement('div');
-                    card.className = "flex-none w-[140px] md:w-[180px] group/card relative bg-slate-900 rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-all duration-300 shadow-lg aspect-[2/3] snap-start border border-slate-700/50";
-                    card.onclick = () => openModal(movie);
+                    card.className = "flex-none w-[140px] md:w-[180px] group/card relative bg-gray-900 rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-all duration-300 shadow-lg aspect-[2/3] snap-start border border-gray-700/50";
+                    card.onclick = () => openModal(item);
 
                     card.innerHTML = `
-                        <img src="${movie.cover}" alt="${movie.title}" loading="lazy" class="w-full h-full object-cover opacity-90 group-hover/card:opacity-100 transition-opacity">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-80"></div>
-                        <div class="absolute bottom-0 left-0 right-0 p-3">
-                            <h3 class="font-semibold text-xs text-white truncate shadow-black drop-shadow-md">${movie.title}</h3>
-                            <p class="text-[10px] text-sky-400 mt-0.5">${movie.duration}</p>
+                        <div class="relative w-full h-full">
+                            ${badgeHTML}
+                            <img src="${item.cover}" alt="${item.title}" loading="lazy" class="${imgClasses}">
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-80 z-20 pointer-events-none"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-3 z-20">
+                            <h3 class="font-semibold text-xs text-white truncate shadow-black drop-shadow-md">${item.title}</h3>
+                            <p class="text-[10px] text-emerald-400 mt-0.5 truncate">${item.info}</p>
                         </div>
                     `;
                     scrollContainer.appendChild(card);
@@ -163,34 +176,46 @@
         }
 
         // Modal Logic
-        const modal = document.getElementById('movie-modal');
+        const modal = document.getElementById('game-modal');
         const els = { 
             title: document.getElementById('modal-title'), 
             plot: document.getElementById('modal-plot'), 
             cat: document.getElementById('modal-category'), 
-            dur: document.getElementById('modal-duration'), 
-            video: document.getElementById('modal-trailer'),
-            jwBtn: document.getElementById('modal-justwatch') // Nuovo riferimento al bottone
+            info: document.getElementById('modal-info'), 
+            videoFrame: document.getElementById('modal-trailer'),
+            videoContainer: document.getElementById('video-container'),
+            infoContainer: document.getElementById('info-container'),
+            searchBtn: document.getElementById('modal-search')
         };
 
-        function openModal(movie) {
-            els.title.innerText = movie.title;
-            els.plot.innerText = movie.plot || "Nessuna trama disponibile.";
-            els.cat.innerText = movie.category;
-            els.dur.innerText = movie.duration;
+        function openModal(item) {
+            els.title.innerText = item.title;
+            els.plot.innerText = item.plot || "Nessuna descrizione disponibile.";
+            els.cat.innerText = item.category;
+            els.info.innerText = item.info; // Usa il campo info generico
             
-            // 1. GESTIONE VIDEO YOUTUBE
-            const videoId = getYouTubeId(movie.trailer);
+            // Gestione Video Intelligente
+            const videoId = getYouTubeId(item.trailer);
+            
             if (videoId) {
-                els.video.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+                // Se c'è un video, mostralo e dividi lo schermo
+                els.videoFrame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+                els.videoContainer.classList.remove('hidden');
+                els.videoContainer.classList.add('md:block'); // Visibile su desktop
+                els.infoContainer.classList.remove('w-full');
+                els.infoContainer.classList.add('md:w-1/3'); // Info pane stretto
             } else {
-                els.video.src = '';
+                // Se NON c'è video (es. Libri), nascondi il player e allarga le info
+                els.videoFrame.src = '';
+                els.videoContainer.classList.add('hidden');
+                els.videoContainer.classList.remove('md:block');
+                els.infoContainer.classList.remove('md:w-1/3');
+                els.infoContainer.classList.add('w-full'); // Info pane a tutto schermo
             }
 
-            // 2. GESTIONE JUSTWATCH LINK (Generazione Dinamica)
-            // Crea un link di ricerca: https://www.justwatch.com/it/cerca?q=NomeFilm
-            const searchTitle = encodeURIComponent(movie.title);
-            els.jwBtn.href = `https://www.justwatch.com/it/cerca?q=${searchTitle}`;
+            // Google Search Link
+            const searchTitle = encodeURIComponent(item.title + " " + item.category);
+            els.searchBtn.href = `https://www.google.com/search?q=${searchTitle}`;
 
             modal.classList.remove('hidden');
             modal.classList.add('flex');
@@ -200,12 +225,11 @@
         function closeModal() {
             modal.classList.add('hidden');
             modal.classList.remove('flex');
-            els.video.src = ''; 
+            els.videoFrame.src = ''; 
             document.body.style.overflow = '';
         }
 
-        loadMovies();
+        loadGames();
     </script>
 </body>
 </html>
-
