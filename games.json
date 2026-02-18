@@ -1,14 +1,14 @@
 [
   {
     "___SEZIONE_A___": "=======================================================",
-    "___TITOLO___": "          VIDEOGIOCHI                   ",
+    "___TITOLO___":    "          VIDEOGIOCHI                   ",
     "___SEZIONE_B___": "======================================================="
   },
   {
     "title": "Red Dead Redemption 2",
     "category": "Videogiochi",
     "cover": "https://image.api.playstation.com/cdn/UP1004/CUSA03041_00/Hpl5MtwQgOVF9vJqlfui6SDB5Jl4oBSq.png",
-    "info": "action-adventure",
+    "info": "Action-Adventure",
     "trailer": "https://www.youtube.com/watch?v=ALixlZV_okk",
     "plot": "Un fuorilegge in fuga cerca di sopravvivere al tramonto del West mentre la lealtà verso la sua banda si scontra con il declino dell'era dei cowboy."
   },
@@ -16,14 +16,14 @@
     "title": "GTA VI",
     "category": "Videogiochi",
     "cover": "https://images.everyeye.it/img-cover/gta-6-v30-31349.jpg",
-    "info": "action-adventure",
+    "info": "Action-Adventure",
     "trailer": "https://www.youtube.com/watch?v=Y63r-k0tE6k",
     "plot": "Il prossimo capitolo della saga Grand Theft Auto, ambientato nella fittizia Leonida.",
     "in_arrivo": true
   },
   {
     "___SEZIONE_A___": "=======================================================",
-    "___TITOLO___": "          GIOCHI DI SOCIETA             ",
+    "___TITOLO___":    "          GIOCHI DI SOCIETÀ             ",
     "___SEZIONE_B___": "======================================================="
   },
   {
@@ -32,28 +32,27 @@
     "cover": "https://cdn.svc.asmodee.net/production-asmodeeit/uploads/image-converter/2022/09/full-game-1.webp",
     "info": "2-12 giocatori",
     "trailer": "https://youtu.be/L9ascGUZTeU?si=dvXg4mGOqd2l4mZN",
-    "plot": "Party game cooperativo e competitivo in cui i giocatori cercano di sintonizzarsi sulla stessa lunghezza d'onda empatica e concettuale"
+    "plot": "Party game cooperativo e competitivo in cui i giocatori cercano di sintonizzarsi sulla stessa lunghezza d'onda empatica e concettuale."
   },
   {
     "title": "Dibattito",
     "category": "Giochi da Tavolo",
     "cover": "https://libreriasemola.it/104807-large_default/dibattito-party-game-gioco-da-tavolo-ludic-in-italiano-eta-10.jpg",
     "info": "3-10 giocatori",
-    "trailer": "https://youtu.be/CcVWVdOOKvQ?si=HGbIeQzgHdjMD9bl",
+    "trailer": "placeholder",
     "plot": "Gioco per simulare un dibattito formale e stimolare la discussione tra i giocatori."
   },
   {
     "___SEZIONE_A___": "=======================================================",
-    "___TITOLO___": "          LIBRI E FUMETTI               ",
+    "___TITOLO___":    "          LIBRI E FUMETTI               ",
     "___SEZIONE_B___": "======================================================="
   },
   {
     "title": "Il Signore delle Mosche",
     "category": "Libri",
     "cover": "https://www.ibs.it/images/9788804676850_0_0_0_0_0.jpg",
-    "info": "romanzo filosofico/psicologico",
-    "trailer": "https://www.youtube.com/watch?v=FakC3653Iy0",
+    "info": "Romanzo filosofico",
+    "trailer": "placeholder",
     "plot": "Un gruppo di ragazzini naufraghi su un'isola deserta regredisce allo stato selvaggio, trasformando il tentativo di autogoverno in una violenta e tragica lotta per il potere."
-  },
+  }
 ]
-
