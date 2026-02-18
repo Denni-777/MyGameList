@@ -5,28 +5,20 @@
     "___SEZIONE_B___": "======================================================="
   },
   {
-    "title": "The Legend of Zelda: Breath of the Wild",
+    "title": "Red Dead Redemption 2",
     "category": "Videogiochi",
-    "cover": "https://upload.wikimedia.org/wikipedia/en/c/c6/The_Legend_of_Zelda_Breath_of_the_Wild.jpg",
-    "info": "Action RPG | Switch",
-    "trailer": "https://www.youtube.com/watch?v=ZwWLns7-xN8",
-    "plot": "Link si risveglia dopo un sonno di 100 anni per sconfiggere la Calamità Ganon e salvare il regno di Hyrule."
-  },
-  {
-    "title": "Elden Ring",
-    "category": "Videogiochi",
-    "cover": "https://upload.wikimedia.org/wikipedia/en/b/b9/Elden_Ring_Box_art.jpg",
-    "info": "Soulslike | Multi",
-    "trailer": "https://www.youtube.com/watch?v=E3Huy2cdih0",
-    "plot": "Un'avventura epica nell'Interregno, creato da Hidetaka Miyazaki e George R.R. Martin."
+    "cover": "https://image.api.playstation.com/cdn/UP1004/CUSA03041_00/Hpl5MtwQgOVF9vJqlfui6SDB5Jl4oBSq.png",
+    "info": "action-adventure",
+    "trailer": "https://www.youtube.com/watch?v=ALixlZV_okk",
+    "plot": "Un fuorilegge in fuga cerca di sopravvivere al tramonto del West mentre la lealtà verso la sua banda si scontra con il declino dell'era dei cowboy."
   },
   {
     "title": "GTA VI",
     "category": "Videogiochi",
-    "cover": "https://upload.wikimedia.org/wikipedia/en/d/d0/Grand_Theft_Auto_VI.png",
-    "info": "Open World | 2025",
-    "trailer": "https://www.youtube.com/watch?v=QdBZY2fkU-0",
-    "plot": "Il prossimo capitolo della saga Grand Theft Auto, ambientato nella fittizia Leonida (Florida).",
+    "cover": "https://images.everyeye.it/img-cover/gta-6-v30-31349.jpg",
+    "info": "action-adventure",
+    "trailer": "https://www.youtube.com/watch?v=Y63r-k0tE6k",
+    "plot": "Il prossimo capitolo della saga Grand Theft Auto, ambientato nella fittizia Leonida.",
     "in_arrivo": true
   },
   {
@@ -35,20 +27,20 @@
     "___SEZIONE_B___": "======================================================="
   },
   {
-    "title": "Catan",
+    "title": "Wavelength",
     "category": "Giochi da Tavolo",
-    "cover": "https://m.media-amazon.com/images/I/81xH60wY0AL._AC_SL1500_.jpg",
-    "info": "3-4 Giocatori | 60 min",
-    "trailer": "https://www.youtube.com/watch?v=K3qjQ7IdaHA",
-    "plot": "I giocatori colonizzano l'isola di Catan costruendo strade, villaggi e città scambiando risorse."
+    "cover": "https://cdn.svc.asmodee.net/production-asmodeeit/uploads/image-converter/2022/09/full-game-1.webp",
+    "info": "2-12 giocatori",
+    "trailer": "https://youtu.be/L9ascGUZTeU?si=dvXg4mGOqd2l4mZN",
+    "plot": "Party game cooperativo e competitivo in cui i giocatori cercano di sintonizzarsi sulla stessa lunghezza d'onda empatica e concettuale"
   },
   {
-    "title": "Dixit",
+    "title": "Dibattito",
     "category": "Giochi da Tavolo",
-    "cover": "https://m.media-amazon.com/images/I/71I+a+3v6fL._AC_SL1024_.jpg",
-    "info": "3-6 Giocatori | 30 min",
-    "trailer": "https://www.youtube.com/watch?v=J66VN9hBD1M",
-    "plot": "Un gioco di carte e narrazione dove l'immaginazione sblocca la storia. Le immagini sono la chiave."
+    "cover": "https://libreriasemola.it/104807-large_default/dibattito-party-game-gioco-da-tavolo-ludic-in-italiano-eta-10.jpg",
+    "info": "3-10 giocatori",
+    "trailer": "https://youtu.be/CcVWVdOOKvQ?si=HGbIeQzgHdjMD9bl",
+    "plot": "Gioco per simulare un dibattito formale e stimolare la discussione tra i giocatori."
   },
   {
     "___SEZIONE_A___": "=======================================================",
@@ -56,28 +48,12 @@
     "___SEZIONE_B___": "======================================================="
   },
   {
-    "title": "Dune",
+    "title": "Il Signore delle Mosche",
     "category": "Libri",
-    "cover": "https://m.media-amazon.com/images/I/41yAuE9XbXL._SY445_SX342_.jpg",
-    "info": "Fantascienza | 600 pag.",
+    "cover": "https://www.ibs.it/images/9788804676850_0_0_0_0_0.jpg",
+    "info": "romanzo filosofico/psicologico",
     "trailer": "https://www.youtube.com/watch?v=FakC3653Iy0",
-    "plot": "La storia di Paul Atreides, ambientata sul pianeta desertico Arrakis, unica fonte della spezia."
+    "plot": "Un gruppo di ragazzini naufraghi su un'isola deserta regredisce allo stato selvaggio, trasformando il tentativo di autogoverno in una violenta e tragica lotta per il potere."
   },
-  {
-    "title": "1984",
-    "category": "Libri",
-    "cover": "https://m.media-amazon.com/images/I/81StSOpmkjL._AC_UF1000,1000_QL80_.jpg",
-    "info": "Distopico | 330 pag.",
-    "trailer": "placeholder",
-    "plot": "In una società totalitaria governata dal Grande Fratello, Winston Smith cerca di ribellarsi."
-  },
-  {
-    "title": "The Winds of Winter",
-    "category": "Libri",
-    "cover": "https://upload.wikimedia.org/wikipedia/en/e/e2/The_Winds_of_Winter_cover.jpg",
-    "info": "Fantasy | George R.R. Martin",
-    "trailer": "placeholder",
-    "plot": "Il sesto e attesissimo romanzo della saga delle Cronache del Ghiaccio e del Fuoco.",
-    "in_arrivo": true
-  }
 ]
+
